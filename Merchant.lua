@@ -52,16 +52,11 @@ if game.PlaceId == 8737899170 then
 
             local function requestPurchase(merchant)
                 for i = 1, 6, 1 do
-                    game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Merchant_RequestPurchase"):InvokeServer(merchant, i)
-                    task.wait(0.1)
-                    game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Merchant_RequestPurchase"):InvokeServer(merchant, i)
-                    task.wait(0.1)
-                    game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Merchant_RequestPurchase"):InvokeServer(merchant, i)
-                    task.wait(0.1)
-                    game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Merchant_RequestPurchase"):InvokeServer(merchant, i)
-                    task.wait(0.1)
+                    for ItemAmount = 1, 4 do
+                        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Merchant_RequestPurchase"):InvokeServer(merchant, i)
+                        task.wait(0.1)
+                    end
                 end
-            end
 
             MerchantUpdated.OnClientEvent:Connect(function()
                 if not Enabled then return end
