@@ -58,6 +58,8 @@ if game.PlaceId == 8737899170 then
                     task.wait(0.1)
                     game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Merchant_RequestPurchase"):InvokeServer(merchant, i)
                     task.wait(0.1)
+                    game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Merchant_RequestPurchase"):InvokeServer(merchant, i)
+                    task.wait(0.1)
                 end
             end
 
