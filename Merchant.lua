@@ -24,6 +24,13 @@ if game.PlaceId == 8737899170 then
         Callback = function()
             if Enabled == true then
                 Enabled = false
+                local function requestPurchase(merchant)
+                    for i = 1, 6, 1 do
+                        for ItemAmount = 1, 4 do
+                            game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Merchant_RequestPurchase"):InvokeServer(merchant, i)
+                            task.wait(0.1)
+                        end
+                    end
             else
                 Enabled = true
             end
