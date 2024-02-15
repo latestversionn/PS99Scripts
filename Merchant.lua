@@ -24,13 +24,6 @@ if game.PlaceId == 8737899170 then
         Callback = function()
             if Enabled == true then
                 Enabled = false
-                local function requestPurchase(merchant)
-                    for i = 1, 6, 1 do
-                        for ItemAmount = 1, 4 do
-                            game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Merchant_RequestPurchase"):InvokeServer(merchant, i)
-                            task.wait(0.1)
-                        end
-                    end
             else
                 Enabled = true
             end
@@ -56,6 +49,33 @@ if game.PlaceId == 8737899170 then
                     Pos = CFrame.new(818.493042, 15.6741753, 1541.24963, -0.995888293, -1.0040635e-08, 0.0905898213, -9.26555987e-09, 1, 8.97642316e-09, -0.0905898213, 8.10014988e-09, -0.995888293)
                 }
             }
+            for i = 1, 6 do
+                for ItemAmount2 = 1, 4 do
+                    if isTeleporting == false then
+                        isTeleporting = true
+                            
+                        -- Save current position
+                        lastPlayerPosition = player.Character.PrimaryPart.CFrame
+
+                        -- Regular Merchant
+                        player.Character:SetPrimaryPartCFrame(MerchantsToBuy["RegularMerchant"].Pos)
+                        task.wait(1)
+                        requestPurchase(MerchantsToBuy["RegularMerchant"].Name)
+                        task.wait(1)
+
+                        -- Advanced Merchant
+                        player.Character:SetPrimaryPartCFrame(MerchantsToBuy["AdvancedMerchant"].Pos)
+                        task.wait(1)
+                        requestPurchase(MerchantsToBuy["AdvancedMerchant"].Name)
+                        task.wait(1)
+
+                        -- Teleport to previous position
+                        player.Character:SetPrimaryPartCFrame(lastPlayerPosition)
+                        isTeleporting = false
+                    end
+                end
+            end
+
 
             local function requestPurchase(merchant)
                 for i = 1, 6, 1 do
